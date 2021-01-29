@@ -1,0 +1,13 @@
+* {
+  /* My variables */
+  --main-bg-color: #2a2a2b;
+
+  /* Polaris variables */
+  --p-background: var(--main-bg-color);
+  --p-background-selected: #151716;
+  --p-background-hovered: #151716;
+}
+
+body {
+  background-color: var(--main-bg-color) !important; // override inline Polaris styles
+}

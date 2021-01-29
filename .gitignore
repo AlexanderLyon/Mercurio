@@ -1,0 +1,10 @@
+node_modules
+*.log
+.next
+app
+dist
+assets
+.vscode
+
+# API keys
+/renderer/tokens.js

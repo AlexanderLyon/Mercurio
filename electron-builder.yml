@@ -1,0 +1,12 @@
+appId: com.example.nextron
+productName: Mercurio
+copyright: Copyright © 2021 Alex Lyon
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null

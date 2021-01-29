@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "mercurio",
+  "description": "Stock market and crypto tracker",
+  "version": "1.0.0",
+  "author": "Alex Lyon",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "build": "nextron build",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "@shopify/polaris": "^5.12.0",
+    "chart.js": "^2.9.4",
+    "electron-serve": "^1.0.0",
+    "electron-store": "^6.0.1",
+    "sass": "^1.32.4"
+  },
+  "devDependencies": {
+    "electron": "^11.1.1",
+    "electron-builder": "^22.9.1",
+    "eslint": "^7.17.0",
+    "eslint-plugin-react": "^7.22.0",
+    "next": "^10.0.5",
+    "nextron": "^6.0.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
