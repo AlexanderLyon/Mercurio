@@ -33,7 +33,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <AppProvider theme={theme} linkComponent={CustomLinkComponent} features={{ newDesignLanguage: true }}>
+      <AppProvider theme={theme} linkComponent={CustomLinkComponent}>
         <Head>
           <title>Mercurio - Stocks and Crypto</title>
           <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
