@@ -1,8 +1,9 @@
-import { app } from 'electron';
+import { app, nativeTheme } from 'electron';
 import serve from 'electron-serve';
 import { createWindow, touchBar } from './helpers';
 
 const isProd = process.env.NODE_ENV === 'production';
+let initialTheme = nativeTheme.shouldUseDarkColors ? 'dark' : 'light';
 
 if (isProd) {
   serve({ directory: 'app' });
@@ -15,9 +16,18 @@ if (isProd) {
 
   const mainWindow = createWindow('main', {
     title: 'Mercurio',
-    backgroundColor: '#2a2a2b',
+    backgroundColor: initialTheme === 'dark' ? '#000000' : '#f6f6f7',
     width: 1000,
     height: 600,
+    webPreferences: {
+      additionalArguments: [`initialTheme=${initialTheme}`],
+    },
+  });
+
+  nativeTheme.on('updated', () => {
+    const newThemeSetting = nativeTheme.shouldUseDarkColors ? 'dark' : 'light';
+    initialTheme = newThemeSetting;
+    mainWindow.webContents.send('theme-change', newThemeSetting);
   });
 
   if (isProd) {
