@@ -13,9 +13,9 @@ import {
   Collapsible,
 } from '@shopify/polaris';
 import { PlusMinor, MinusMinor } from '@shopify/polaris-icons';
-import { StockChart } from './StockChart';
+import StockChart from './StockChart';
 
-export const StockCard = ({ data, unfollowStock, identifier }) => {
+export const StockCard = ({ data, unfollowStock }) => {
   const negativePrice = data.change < 0;
   const [detailsExpanded, setDetailsExpanded] = useState(false);
   const toggleExpandedDetails = useCallback(() => setDetailsExpanded((detailsExpanded) => !detailsExpanded), []);
@@ -111,7 +111,7 @@ export const StockCard = ({ data, unfollowStock, identifier }) => {
           </TextContainer>
         </Stack>
 
-        <StockChart identifier={identifier} data={data.hourly} isNegative={negativePrice} />
+        <StockChart symbol={data.symbol} data={data.hourly} isNegative={negativePrice} />
 
         <Collapsible
           open={detailsExpanded}

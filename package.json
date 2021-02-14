@@ -13,9 +13,12 @@
   "dependencies": {
     "@shopify/polaris": "^6.0.1",
     "chart.js": "^2.9.4",
+    "d3-scale": "^3.2.3",
+    "d3-shape": "^2.0.0",
     "dotenv": "^8.2.0",
     "electron-serve": "^1.0.0",
     "electron-store": "^6.0.1",
+    "react-stockcharts": "^0.7.8",
     "sass": "^1.32.4"
   },
   "devDependencies": {

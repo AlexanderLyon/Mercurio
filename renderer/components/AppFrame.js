@@ -64,18 +64,22 @@ export const AppFrame = ({ children }) => {
               const formattedHourlyData = await getHourlyData(item.symbol, item.type);
               const formattedNews = await getStockNews(item.symbol, item.type);
 
-              // Only include every 7 minutes of data, or most recent point
-              const shorterArr = formattedHourlyData.filter((minute, i) => {
-                if ((i % 7 === 0 || i === formattedHourlyData.length - 1) && minute.average) {
+              const filteredArr = formattedHourlyData.filter((minute) => {
+                if (minute.average) {
                   return minute;
                 }
+              });
+
+              // Add a formatted timestamp property
+              filteredArr.forEach((obj) => {
+                obj.timestamp = new Date(`${obj.date}T${obj.minute}`);
               });
 
               return {
                 symbol: formattedData.symbol,
                 company: formattedData.companyName,
                 marketCap: formattedData.marketCap,
-                hourly: shorterArr,
+                hourly: filteredArr,
                 latestPrice: formattedData.latestPrice,
                 latestTime: formattedData.latestTime,
                 latestUpdate: formattedData.latestUpdate,
