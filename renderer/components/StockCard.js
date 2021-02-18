@@ -14,6 +14,7 @@ import {
 } from '@shopify/polaris';
 import { PlusMinor, MinusMinor } from '@shopify/polaris-icons';
 import StockChart from './StockChart';
+import { dollar } from '../utils';
 
 export const StockCard = ({ data, unfollowStock, identifier }) => {
   const negativePrice = data.change < 0;
@@ -93,21 +94,19 @@ export const StockCard = ({ data, unfollowStock, identifier }) => {
             <Subheading>
               <TextStyle variation="subdued">Latest Price</TextStyle>
             </Subheading>
-            <TextStyle variation={negativePrice ? 'negative' : 'positive'}>{`$${Number(data.latestPrice).toFixed(
-              2
-            )}`}</TextStyle>
+            <TextStyle variation={negativePrice ? 'negative' : 'positive'}>{dollar(data.latestPrice)}</TextStyle>
           </TextContainer>
           <TextContainer>
             <Subheading>
               <TextStyle variation="subdued">Change Amount</TextStyle>
             </Subheading>
-            <TextStyle>{`$${Number(data.change).toFixed(2)} (${Number(data.changePercent.toFixed(3))}%)`}</TextStyle>
+            <TextStyle>{`${dollar(data.change)} (${Number(data.changePercent.toFixed(3))}%)`}</TextStyle>
           </TextContainer>
           <TextContainer>
             <Subheading>
               <TextStyle variation="subdued">Previous Close</TextStyle>
             </Subheading>
-            <TextStyle>{`$${data.previousClose}`}</TextStyle>
+            <TextStyle>{dollar(data.previousClose)}</TextStyle>
           </TextContainer>
         </Stack>
 
@@ -124,12 +123,12 @@ export const StockCard = ({ data, unfollowStock, identifier }) => {
               headings={buildHeadings(['Latest Price', 'Change Amt', 'Change %', 'High', 'Low', 'Previous Close'])}
               rows={[
                 [
-                  `$${Number(data.latestPrice).toFixed(2)}`,
-                  `$${Number(data.change).toFixed(2)}`,
+                  dollar(data.latestPrice),
+                  dollar(data.change),
                   `${Number(data.changePercent.toFixed(3))}%`,
-                  `$${data.high}`,
-                  `$${data.low}`,
-                  `$${data.previousClose}`,
+                  dollar(data.high),
+                  dollar(data.low),
+                  dollar(data.previousClose),
                 ],
               ]}
             />
