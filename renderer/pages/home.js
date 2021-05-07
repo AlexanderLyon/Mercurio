@@ -5,8 +5,16 @@ import { StockCard } from '../components/StockCard';
 import { AddForm } from '../components/AddForm';
 
 const Dashboard = ({ stockData, autofillOptions, updateStockData }) => {
-  const [showingAddForm, setShowingAddForm] = useState(false);
-  const toggleAddForm = useCallback(() => setShowingAddForm((showingAddForm) => !showingAddForm), []);
+  const [showingAddStockForm, setShowingAddStockForm] = useState(false);
+  const [showingAddCryptoForm, setShowingAddCryptoForm] = useState(false);
+  const toggleAddStockForm = useCallback(() => {
+    setShowingAddCryptoForm(false);
+    setShowingAddStockForm((showingForm) => !showingForm), [];
+  });
+  const toggleAddCryptoForm = useCallback(() => {
+    setShowingAddStockForm(false);
+    setShowingAddCryptoForm((showingForm) => !showingForm), [];
+  });
 
   const greeting = () => {
     const hour = new Date().getHours();
@@ -45,19 +53,37 @@ const Dashboard = ({ stockData, autofillOptions, updateStockData }) => {
           <Stack vertical="true">
             <DisplayText size="large">{greeting()}</DisplayText>
             <ButtonGroup vertical>
-              <Button onClick={toggleAddForm} outline icon={showingAddForm ? MobileCancelMajor : MobilePlusMajor}>
-                {showingAddForm ? 'Close' : 'Add'}
+              <Button
+                onClick={toggleAddStockForm}
+                primary={!showingAddStockForm}
+                icon={showingAddStockForm ? MobileCancelMajor : MobilePlusMajor}
+              >
+                {showingAddStockForm ? 'Close' : 'Add Stock'}
+              </Button>
+              <Button
+                onClick={toggleAddCryptoForm}
+                primary={!showingAddCryptoForm}
+                icon={showingAddCryptoForm ? MobileCancelMajor : MobilePlusMajor}
+              >
+                {showingAddCryptoForm ? 'Close' : 'Add Crypto'}
               </Button>
               <Button onClick={updateStockData} outline icon={RefreshMinor}>
                 Refresh
               </Button>
             </ButtonGroup>
             <Collapsible
-              open={showingAddForm}
+              open={showingAddStockForm}
               id="basic-collapsible"
               transition={{ duration: '150ms', timingFunction: 'ease' }}
             >
               <AddForm updateStockData={updateStockData} autofillOptions={autofillOptions} />
+            </Collapsible>
+            <Collapsible
+              open={showingAddCryptoForm}
+              id="basic-collapsible"
+              transition={{ duration: '150ms', timingFunction: 'ease' }}
+            >
+              <p>Crypto support coming soon!</p>
             </Collapsible>
             {stockData && (
               <Stack distribution="fillEvenly" wrap="true">
